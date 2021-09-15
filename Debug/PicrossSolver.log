@@ -1,11 +1,8 @@
-﻿  Main.cpp
-  PicrossGrid.cpp
-E:\Linda\Documents\C++\PicrossSolver\PicrossSolver\PicrossGrid.cpp(8,33): warning C4018: '<': signed/unsigned mismatch
-E:\Linda\Documents\C++\PicrossSolver\PicrossSolver\PicrossGrid.cpp(8,63): warning C4018: '<': signed/unsigned mismatch
-E:\Linda\Documents\C++\PicrossSolver\PicrossSolver\PicrossGrid.cpp(32,25): warning C4018: '<': signed/unsigned mismatch
-E:\Linda\Documents\C++\PicrossSolver\PicrossSolver\PicrossGrid.cpp(34,26): warning C4018: '<': signed/unsigned mismatch
-  PicrossLine.cpp
-E:\Linda\Documents\C++\PicrossSolver\PicrossSolver\PicrossLine.cpp(41,26): warning C4018: '<': signed/unsigned mismatch
-  PicrossSquare.cpp
-  Generating Code...
+﻿  PicrossGrid.cpp
+E:\Linda\Documents\C++\PicrossSolver\PicrossSolver\PicrossGrid.cpp(9,13): warning C4018: '<': signed/unsigned mismatch
+E:\Linda\Documents\C++\PicrossSolver\PicrossSolver\PicrossGrid.cpp(12,14): warning C4018: '<': signed/unsigned mismatch
+E:\Linda\Documents\C++\PicrossSolver\PicrossSolver\PicrossGrid.cpp(25,33): warning C4018: '<': signed/unsigned mismatch
+E:\Linda\Documents\C++\PicrossSolver\PicrossSolver\PicrossGrid.cpp(33,33): warning C4018: '<': signed/unsigned mismatch
+E:\Linda\Documents\C++\PicrossSolver\PicrossSolver\PicrossGrid.cpp(49,24): warning C4018: '<': signed/unsigned mismatch
+E:\Linda\Documents\C++\PicrossSolver\PicrossSolver\PicrossGrid.cpp(51,25): warning C4018: '<': signed/unsigned mismatch
   PicrossSolver.vcxproj -> E:\Linda\Documents\C++\PicrossSolver\Debug\PicrossSolver.exe

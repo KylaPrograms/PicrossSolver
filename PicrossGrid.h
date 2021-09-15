@@ -9,12 +9,22 @@ class PicrossGrid
 		/// <summary>
 		/// 
 		/// </summary>
-		std::vector<std::vector<PicrossSquare>> GridOfSquares;
+		typedef std::vector<std::shared_ptr<PicrossSquare>> RowOfPicrossSquares;
 
 		/// <summary>
 		/// 
 		/// </summary>
-		std::vector<PicrossLine*> Rows, Columns;
+		typedef std::vector<RowOfPicrossSquares> GridOfPicrossSquares;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		GridOfPicrossSquares GridOfSquares;
+
+		/// <summary>
+		/// 
+		/// </summary>
+		std::vector<std::shared_ptr<PicrossLine>> Rows, Columns;
 
 	public:
 		friend std::ostream& operator <<(std::ostream& os, const PicrossGrid& pg);
@@ -26,13 +36,15 @@ class PicrossGrid
 		/// </summary>
 		/// <param name="rowNumber"></param>
 		/// <param name="clueNums"></param>
-		void SetClueNumbersForRow(int rowNumber, std::vector<int> clueNums);
+		void SetClueNumbersForRow(int rowNumber, std::vector<int>& clueNums);
 
 		/// <summary>
 		/// 
 		/// </summary>
 		/// <param name="colNumber"></param>
 		/// <param name="clueNums"></param>
-		void SetClueNumbersForColumn(int colNumber, std::vector<int> clueNums);
+		void SetClueNumbersForColumn(int colNumber, std::vector<int>& clueNums);
+
+		void Solve();
 };
 

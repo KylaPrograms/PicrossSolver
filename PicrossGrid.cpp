@@ -1,46 +1,58 @@
 #include "PicrossGrid.h"
 
-PicrossGrid::PicrossGrid(int rowAmount, int columnAmount) :
-	GridOfSquares{ rowAmount, std::vector<PicrossSquare>(columnAmount, PicrossSquare()) },
-	Rows{ rowAmount, new PicrossLine(columnAmount) },
-	Columns{ columnAmount, new PicrossLine(rowAmount)}
+PicrossGrid::PicrossGrid(int columnAmount, int rowAmount) :
+	GridOfSquares(rowAmount, RowOfPicrossSquares(columnAmount)),
+	Rows(rowAmount),
+	Columns(columnAmount)
 {
-	for (int row = 0, col = 0; row < GridOfSquares.size() && col < GridOfSquares[row].size(); ++row, ++col)
+	int row = 0, col = 0;
+	for (; row < GridOfSquares.size(); ++row)
 	{
-		Rows[row]->AssignSquareInLine(col, GridOfSquares[row][col]);
-		Columns[col]->AssignSquareInLine(row, GridOfSquares[row][col]);
-		
+		Rows[row] = std::make_shared<PicrossLine>(columnAmount);
+		for (; col < GridOfSquares[row].size(); ++col)
+		{
+			Columns[col] = std::make_shared<PicrossLine>(rowAmount);
+			GridOfSquares[row][col] = std::make_shared<PicrossSquare>();
+
+			//Rows[row]->AssignSquareInLine(col, GridOfSquares[row][col]);
+		}
+		col = 0;
 	}
-
-	GridOfSquares[0][2].Fill();
 }
 
-void PicrossGrid::SetClueNumbersForRow(int rowNumber, std::vector<int> clueNums)
+void PicrossGrid::SetClueNumbersForRow(int rowNumber, std::vector<int>& clueNums)
 {
-	Rows[rowNumber]->SetClueNumbers(clueNums);
+	if (rowNumber > 0 && rowNumber < Rows.size())
+	{
+		Rows[rowNumber]->SetClueNumbers(clueNums);
+	}
 }
 
-void PicrossGrid::SetClueNumbersForColumn(int colNumber, std::vector<int> clueNums)
+void PicrossGrid::SetClueNumbersForColumn(int colNumber, std::vector<int>& clueNums)
 {
-	Columns[colNumber]->SetClueNumbers(clueNums);
+	if (colNumber > 0 && colNumber < Rows.size())
+	{
+		Columns[colNumber]->SetClueNumbers(clueNums);
+	}
+}
+
+void PicrossGrid::Solve()
+{
+	for (std::shared_ptr<PicrossLine> pl : Rows)
+	{
+		pl->SolveLine();
+	}
 }
 
 std::ostream& operator<<(std::ostream& os, const PicrossGrid& pg)
 {
-	if (&pg.GridOfSquares)
+	for (int row = 0; row < pg.GridOfSquares.size(); ++row)
 	{
-		for (int row = 0; row < pg.GridOfSquares.size(); ++row)
+		for (int col = 0; col < pg.GridOfSquares[row].size(); ++col)
 		{
-			for (int col = 0; col < pg.GridOfSquares[row].size(); ++col)
-			{
-				os << pg.GridOfSquares[row][col];
-			}
-			os << "\n";
+			os << *pg.GridOfSquares[row][col];
 		}
-	}
-	else
-	{
-		os << "ERROR: PicrossGrid : grid nullpointer\n";
+		os << "\n";
 	}
 
 	return os;
